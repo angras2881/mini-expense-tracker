@@ -1,8 +1,10 @@
 # 💰 Mini Expense Tracker
 
-A sleek, responsive, and functional web application built to help users manage their daily finances. This project demonstrates modern frontend development practices, state management, and data visualization.
+A professional, responsive dashboard for tracking personal finances. Built with **React**, **Vite**, and **Tailwind CSS**, featuring real-time data visualization and persistent storage.
 
-**🌐 [Live Demo](https://mexpense-tracker.netlify.app/)**
+**Live Demo:** [🚀 mexpense-tracker.netlify.app](https://mexpense-tracker.netlify.app/)
+
+
 
 ---
 
@@ -42,8 +44,9 @@ Clone the repository
 
 Bash
 
-git clone https://github.com/your-username/your-repo-name.git
-Enter the project directory Note: The project lives in the expense-tracker folder.
+git clone https://github.com/angras2881/mini-expense-tracker.git
+Navigate to the project folder Note: The React application is located within the expense-tracker subdirectory.
+cd mini-expense-tracker/expense-tracker
 
 Bash
 
