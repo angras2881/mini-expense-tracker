@@ -1,91 +1,82 @@
-
 import { useState } from "react";
 
-export default function ExpenseForm({ addExpense }) {
-  const [desc, setDesc] = useState("");
+const ExpenseForm = ({ addExpense }) => {
+  const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("Grocery");
-  const [date, setDate] = useState(
-    new Date().toISOString().split("T")[0]
-  );
+  const [category, setCategory] = useState(""); // Set to empty string for placeholder
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (amount <= 0) {
-      alert("Amount must be a positive number");
-      return;
-    }
+    if (!description || !amount || !category) return; // Basic validation
 
     addExpense({
-      desc,
+      description,
       amount: parseFloat(amount),
       category,
-      date,
+      date: new Date().toLocaleDateString(),
     });
 
-    setDesc("");
+    // Clear inputs after adding
+    setDescription("");
     setAmount("");
-    setCategory("Grocery");
-    setDate(new Date().toISOString().split("T")[0]);
+    setCategory("");
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="p-4 bg-white rounded shadow flex flex-wrap gap-2 items-center"
-    >
-      {/* Description */}
-      <input
-        type="text"
-        placeholder="Description"
-        value={desc}
-        onChange={(e) => setDesc(e.target.value)}
-        className="border p-2 rounded flex-1 min-w-[150px]"
-        required
-      />
+    <form onSubmit={handleSubmit} className="flex flex-wrap gap-4 mb-8 items-end justify-center">
+      {/* Description Input */}
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-gray-600">Description</label>
+        <input
+          type="text"
+          placeholder="e.g. Coffee"
+          className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+      </div>
 
-      {/* Amount */}
-      <input
-        type="number"
-        placeholder="Amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        min="0.01"
-        step="0.01"
-        className="border p-2 rounded w-[120px] appearance-none"
-        required
-      />
+      {/* Amount Input */}
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-gray-600">Amount</label>
+        <input
+          type="number"
+          placeholder="0.00"
+          className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          required
+        />
+      </div>
 
       {/* Category Dropdown */}
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        className="border p-2 rounded w-[150px]"
-      >
-        <option>Grocery</option>
-        <option>Entertainment</option>
-        <option>Transport</option>
-        <option>Shopping</option>
-        <option>Bills</option>
-        <option>Other</option>
-      </select>
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-gray-600">Category</label>
+        <select
+          className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
+        >
+          <option value="" disabled>Select Category</option>
+          <option value="Grocery">Grocery</option>
+          <option value="Clothes">Clothes</option>
+          <option value="Bills">Bills</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Food">Food</option>
+        </select>
+      </div>
 
-      {/* Date */}
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        className="border p-2 rounded w-[150px]"
-      />
-
-      {/* Button */}
+      {/* Add Button */}
       <button
         type="submit"
-        className="bg-green-600 text-white px-4 py-2 rounded"
+        className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-md"
       >
         Add
       </button>
     </form>
   );
-}
+};
+
+export default ExpenseForm;
