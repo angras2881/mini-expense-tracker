@@ -1,10 +1,11 @@
 
-function Footer() {
+
+const Footer = () => {
   return (
-    <footer>
-      <p>© 2025 Your Name. All rights reserved.</p>
+    <footer className="py-6 text-center text-gray-600 border-t mt-10">
+      <p>© {new Date().getFullYear()} Shipra Angra. All rights reserved.</p>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

@@ -1,36 +1,49 @@
-import ExpenseBarChart from "./ExpenseBarChart";
+import React from "react";
 
-export default function ExpenseSummary({ expenses }) {
-  if (!expenses || expenses.length === 0) {
-    return (
-      <div className="mt-4 p-4 bg-gray-100 rounded shadow">
-        <h3 className="text-xl font-bold mb-2">Summary</h3>
-        <p>Add some expenses to get insights!</p>
-      </div>
-    );
-  }
-
-  // Calculate total and highest expense category locally
+export default function ExpenseSummary({ expenses, deleteExpense }) {
   const total = expenses.reduce((sum, e) => sum + e.amount, 0);
-  const highest = expenses.reduce(
-    (max, e) => (e.amount > max.amount ? e : max),
-    expenses[0]
-  );
-
-  const aiInsights = `Total spent: $${total.toFixed(2)}. Highest expense: ${highest.category} ($${highest.amount.toFixed(2)}).`;
 
   return (
-    <div className="mt-4">
-      <div className="p-4 bg-gray-100 rounded shadow">
-        <h3 className="text-xl font-bold mb-2">Summary</h3>
-        <div className="mt-2 p-2 bg-white rounded shadow">
-          <h4 className="font-bold">Insights:</h4>
-          <p>{aiInsights}</p>
-        </div>
+    <div className="mt-6">
+      {/* Summary Header */}
+      <h3 className="text-xl font-bold mb-2">Summary</h3>
+      <p className="mb-4">Total Expenses: ${total.toFixed(2)}</p>
+
+      {/* Expense List */}
+      <div className="bg-white rounded shadow divide-y">
+        {expenses.length === 0 && (
+          <p className="p-4 text-gray-500">No expenses added yet.</p>
+        )}
+
+        {expenses.map((e) => (
+          <div
+            key={e.id}
+            className="flex justify-between items-center p-3"
+          >
+            {/* Expense Info */}
+            <div>
+              <p className="font-semibold">{e.desc}</p>
+              <p className="text-sm text-gray-500">
+                {e.category} • {e.date}
+              </p>
+            </div>
+
+            {/* Amount & Delete */}
+            <div className="flex items-center gap-4">
+              <span className="font-bold">${e.amount.toFixed(2)}</span>
+              <button
+                onClick={() => deleteExpense(e.id)}
+                className="text-red-600 hover:text-red-800"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
-      <ExpenseBarChart expenses={expenses} />
     </div>
   );
 }
+
 
 
