@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseSummary from "./components/ExpenseSummary";
 import Footer from "./components/Footer";
-import Hero from "./components/Hero"; 
+import Hero from "./components/Hero";
 
 function App() {
   const [expenses, setExpenses] = useState(() => {
