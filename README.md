@@ -34,3 +34,28 @@ src/
 │   └── Footer.jsx            # Project credits
 ├── App.jsx                   # Main logic and persistence layer
 └── main.jsx                  # Entry point
+
+⚙️ Local Setup
+Follow these steps to get the project running on your local machine:
+
+Clone the repository
+
+Bash
+
+git clone https://github.com/your-username/your-repo-name.git
+Enter the project directory Note: The project lives in the expense-tracker folder.
+
+Bash
+
+cd expense-tracker
+Install dependencies Make sure you have Node.js installed.
+
+Bash
+
+npm install
+Start the development server
+
+Bash
+
+npm run dev
+View the app Open your browser and navigate to http://localhost:5173 (or the port shown in your terminal).
